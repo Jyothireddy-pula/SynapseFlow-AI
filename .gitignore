@@ -1,0 +1,98 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environments
+venv/
+env/
+.venv/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# -------------------------
+# Environment / Secrets
+# -------------------------
+.env
+.env.local
+.env.dev
+.env.prod
+secrets.json
+config/*.secret.json
+
+# -------------------------
+# Qdrant / Vector Memory Files
+# -------------------------
+qdrant_data/
+*.qdrant
+*.index
+*.db
+
+# -------------------------
+# Logs & Runtime Data
+# -------------------------
+*.log
+logs/
+*.pid
+*.sqlite
+*.db
+memory_cache.json
+
+# -------------------------
+# Node / Frontend
+# -------------------------
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+build/
+dist/
+.cache/
+
+# -------------------------
+# Frontend Generated Files
+# -------------------------
+*.map
+*.gz
+*.br
+
+# -------------------------
+# OS Files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Editor / IDE Configs
+# -------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# -------------------------
+# Temporary
+# -------------------------
+tmp/
+temp/
+*.tmp
+
+# -------------------------
+# Assets (Ignore large raw files)
+# -------------------------
+assets/raw/
+*.mp4
+*.mov
+*.avi
+
+# Keep GIF demo committed
+!assets/demo.gif
