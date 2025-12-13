@@ -76,10 +76,6 @@ Pick one and I will implement it directly into the zip.
 Set `USE_EMBEDDINGS_QDRANT=1` in your .env to enable OpenAI embeddings upserts into Qdrant when Memory.add is called.
 
 
-
-## Renamed to SynapseFlow AI
-This repository has been renamed from LightAgent to SynapseFlow AI. All code, package names, and docs updated accordingly.
-
 New features in this release:
 - Frontend with auth and SSE streaming UX
 - Embeddings->Qdrant end-to-end
