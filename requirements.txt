@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+requests
+python-dotenv
+openai
+qdrant-client
+numpy
+pytest
+tqdm
+
+pillow
+
+flask_cors
