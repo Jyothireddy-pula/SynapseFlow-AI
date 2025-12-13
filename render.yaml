@@ -1,0 +1,9 @@
+# Render service: web service example
+services:
+  - type: web
+    name: synapseflow-web
+    env: python
+    plan: free
+    repo: <your-github-repo-url>
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn synapseflow_app:app --host 0.0.0.0 --port $PORT
