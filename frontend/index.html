@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SynapseFlow — Live Stream</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Inter, Arial, sans-serif; margin:0; padding:20px; background:#f7fafc}
+    .card{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    #output{white-space:pre-wrap;height:320px;overflow:auto;border:1px solid #e2e8f0;padding:12px;border-radius:6px;background:#0f172a;color:#e6eef8}
+    input, textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #e2e8f0;border-radius:6px}
+    button{padding:10px 14px;border-radius:8px;border:none;background:#2563eb;color:white}
+    #login{display:flex;gap:8px}
+  </style>
+</head>
+<body>
+  <div class='card'>
+    <h2>SynapseFlow — Live Streaming Demo</h2>
+    <div id='login'>
+      <input id='user' placeholder='username' style='width:140px' />
+      <input id='pass' placeholder='password' type='password' style='width:140px' />
+      <button id='btnLogin'>Login</button>
+    </div>
+    <p id='status'></p>
+    <textarea id='prompt' rows=3 placeholder='Type your prompt...'>Write a short travel plan to Sanya.</textarea>
+    <div style='display:flex;gap:8px'><button id='start'>Start Stream</button><button id='stop'>Stop</button></div>
+    <h4>Output</h4>
+    <div id='output'></div>
+  </div>
+<script>
+let es=null;let token=null;
+document.getElementById('btnLogin').onclick = async ()=>{
+  const user=document.getElementById('user').value;const pw=document.getElementById('pass').value;
+  const res = await fetch('/auth/token', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({username:user,password:pw})});
+  if(res.ok){const j=await res.json(); token=j.access_token; document.getElementById('status').innerText='Logged in as '+user;} else {document.getElementById('status').innerText='Login failed';}
+}
+document.getElementById('start').onclick = ()=>{
+  if(!token){alert('Please login first'); return}
+  const q = encodeURIComponent(document.getElementById('prompt').value);
+  if(es) es.close();
+  es = new EventSource('/sse_stream?q='+q+'&token='+token);
+  const out=document.getElementById('output'); out.innerText='';
+  es.onmessage = e => { out.innerText += e.data; out.scrollTop = out.scrollHeight };
+  es.onerror = e => { out.innerText += '\n[error]'; es.close(); }
+}
+document.getElementById('stop').onclick = ()=>{ if(es) es.close(); }
+</script>
+</body>
+</html>
