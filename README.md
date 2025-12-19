@@ -2,6 +2,7 @@
 
 **Overview**: SynapseFlow is an extensible multi-agent framework that can plan, use tools, remember conversations, and stream LLM responses. This package is a complete, well-documented, and demo-ready project that you can run locally and extend for production use.
 
+
 ## Highlights
 - Modular Agent core (Planner, Memory, Tool Registry)
 - OpenAI integration (sync + streaming) with example consumer
